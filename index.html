@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LectureAI – Voice to Notes</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="logo">🎙️ LectureAI</div>
+    <p class="tagline">Speak your lecture → Get smart notes, quizzes & flashcards!</p>
+  </div>
+
+  <!-- Recording Section -->
+  <div class="card record-card">
+    <div class="mic-area">
+      <button id="micBtn" onclick="toggleRecording()">
+        <span id="micIcon">🎙️</span>
+      </button>
+      <div id="micStatus">Click to start recording</div>
+      <div id="timer" class="hidden">⏱️ <span id="timerCount">0</span>s</div>
+    </div>
+
+    <div class="or-divider">— OR paste text directly —</div>
+
+    <textarea id="transcriptBox" placeholder="Your lecture transcript will appear here as you speak... or paste text manually."></textarea>
+
+    <div class="word-count" id="wordCount">0 words</div>
+  </div>
+
+  <!-- Output Mode Selector -->
+  <div class="card mode-card">
+    <p class="mode-label">What do you want to generate?</p>
+    <div class="modes">
+      <button class="mode-btn active" id="mode-notes" onclick="setMode('notes')">📝 Study Notes</button>
+      <button class="mode-btn" id="mode-summary" onclick="setMode('summary')">📌 Summary</button>
+      <button class="mode-btn" id="mode-quiz" onclick="setMode('quiz')">🧠 Quiz</button>
+      <button class="mode-btn" id="mode-flash" onclick="setMode('flash')">🃏 Flashcards</button>
+    </div>
+    <button id="generateBtn" onclick="generateOutput()">✨ Generate Now</button>
+  </div>
+
+  <!-- Output Section -->
+  <div id="outputCard" class="card output-card hidden">
+    <div class="output-header">
+      <h3 id="outputTitle">📝 Study Notes</h3>
+      <button class="copy-btn" onclick="copyOutput()">📋 Copy</button>
+    </div>
+    <div id="outputContent"></div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
