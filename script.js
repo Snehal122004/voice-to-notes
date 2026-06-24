@@ -109,9 +109,12 @@ async function generateOutput() {
   // Get API key from input box
   const API_KEY = document.getElementById('apiKeyInput').value.trim();
   if (!API_KEY) {
-    alert("Please enter your Groq API key first! Get it free from console.groq.com");
+    alert("Please enter your Groq API key first!\n\nGet it FREE from: console.groq.com\n\nSteps:\n1. Go to console.groq.com\n2. Sign up with Google\n3. Click API Keys → Create API Key\n4. Copy and paste here!");
     return;
   }
+
+  // Save key in browser for next time
+  localStorage.setItem('groq_key', API_KEY);
 
   const text = document.getElementById('transcriptBox').value.trim();
   if (!text || text.length < 20) {
@@ -219,3 +222,12 @@ function copyOutput() {
 
 // ─── Init ─────────────────────────────────────────────────
 setupSpeech();
+
+// Load saved API key automatically on page load
+window.onload = () => {
+  const savedKey = localStorage.getItem('groq_key');
+  if (savedKey) {
+    document.getElementById('apiKeyInput').value = savedKey;
+    console.log("✅ API key loaded from browser storage!");
+  }
+}
