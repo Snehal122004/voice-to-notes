@@ -1,4 +1,5 @@
-const API_KEY = "YOUR_API_KEY_HERE";
+// API key will be taken from input box - not stored in code!
+
 let recognition = null;
 let isRecording = false;
 let timerInterval = null;
@@ -104,6 +105,14 @@ function setMode(mode) {
 
 // ─── Generate Output (Groq API) ──────────────────────────
 async function generateOutput() {
+
+  // Get API key from input box
+  const API_KEY = document.getElementById('apiKeyInput').value.trim();
+  if (!API_KEY) {
+    alert("Please enter your Groq API key first! Get it free from console.groq.com");
+    return;
+  }
+
   const text = document.getElementById('transcriptBox').value.trim();
   if (!text || text.length < 20) {
     alert("Please speak or paste some text first! Minimum 20 characters required.");
